@@ -2,8 +2,8 @@
 
 		<div id="navigation">
 			<ul>
-				<li><a href="/mysite/main">홈</a></li>
-				<li><a href="/mysite/gb">방명록</a></li>
-				<li><a href="/mysite/board">게시판</a></li>
+				<li><a href="${pageContext.request.contextPath }/main">홈</a></li>
+				<li><a href="${pageContext.request.contextPath }/gb">방명록</a></li>
+				<li><a href="${pageContext.request.contextPath }/board">게시판</a></li>
 			</ul>
 		</div> <!-- /navigation -->
