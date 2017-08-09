@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,5 +46,22 @@ public class UserController {
 		} else {
 			return "redirect:/user/loginform?result=fail";
 		}
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("authUser");
+		session.invalidate();
+		return "redirect:/main";
+	}
+	
+	@RequestMapping(value="/modifyform", method = RequestMethod.GET)
+	public String modifyform(HttpSession session, Model model) {
+		UserVo authUser = (UserVo)session.getAttribute("authUser");
+		int no = authUser.getNo();
+		UserVo userVo = userService.getUser(no);
+		
+		model.addAttribute("userVo", userVo);
+		return "user/modifyform";
 	}
 }

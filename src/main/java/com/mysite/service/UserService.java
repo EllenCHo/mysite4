@@ -18,4 +18,8 @@ public class UserService {
 	public UserVo getUser(String email, String password) {
 		return userDao.getUser(email, password);
 	}
+	
+	public UserVo getUser(int no) {
+		return userDao.getUser(no);
+	}
 }
