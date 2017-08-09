@@ -12,8 +12,9 @@
 					#{gender})
 		]]>
 	</insert>
-	
-	<select id="selectUserByEmailPW" parameterType="map" resultType="com.mysite.vo.UserVo">
+
+	<select id="selectUserByEmailPW" parameterType="map"
+		resultType="com.mysite.vo.UserVo">
 		<![CDATA[
 			select no, name
 			from users
@@ -21,7 +22,7 @@
 				  and password = #{password}
 		]]>
 	</select>
-	
+
 	<select id="selectUserByNo" parameterType="int" resultType="com.mysite.vo.UserVo">
 		<![CDATA[
 			select no, name, email, gender
@@ -29,4 +30,19 @@
 			where no = #{no}
 		]]>
 	</select>
+
+	<update id="update" parameterType="com.mysite.vo.UserVo">
+		
+		<![CDATA[
+			update users
+			set name = #{name},
+				gender = #{gender}
+		]]>
+			<if test="password != null and password != ''">
+				, password = #{password}
+			</if>
+		<![CDATA[
+			where no = #{no}
+		]]>
+	</update>
 </mapper>

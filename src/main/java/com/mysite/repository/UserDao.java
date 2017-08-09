@@ -31,4 +31,8 @@ public class UserDao {
 		UserVo userVo = sqlSession.selectOne("user.selectUserByNo", no);
 		return userVo;
 	}
+	
+	public int updateUser(UserVo userVo) {
+		return sqlSession.update("user.update", userVo);
+	}
 }
