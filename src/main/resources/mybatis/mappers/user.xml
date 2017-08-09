@@ -12,4 +12,13 @@
 					#{gender})
 		]]>
 	</insert>
+	
+	<select id="selectUserByEmailPW" parameterType="map" resultType="com.mysite.vo.UserVo">
+		<![CDATA[
+			select no, name
+			from users
+			where email = #{email} 
+				  and password = #{password}
+		]]>
+	</select>
 </mapper>

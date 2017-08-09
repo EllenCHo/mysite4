@@ -14,4 +14,8 @@ public class UserService {
 	public int join(UserVo userVo) {
 		return userDao.insert(userVo);
 	}
+	
+	public UserVo getUser(String email, String password) {
+		return userDao.getUser(email, password);
+	}
 }
