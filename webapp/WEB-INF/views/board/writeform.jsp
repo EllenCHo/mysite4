@@ -5,7 +5,7 @@
 <head>
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
-<link href="/mysite/assets/css/board.css" rel="stylesheet" type="text/css">
+<link href="${pageContext.request.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div id="container">
@@ -16,7 +16,7 @@
 		
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="/mysite/bs?a=write">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/bs?a=write">
 					<input type = "hidden" name = "userNo" value="${authUser.no }">
 					<table class="tbl-ex">
 						<tr>
@@ -34,7 +34,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="/mysite/bs">취소</a>
+						<a href="${pageContext.request.contextPath }/bs">취소</a>
 						<input type="submit" value="등록">
 					</div>
 				</form>				
