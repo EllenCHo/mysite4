@@ -33,4 +33,13 @@ public class BoardDao {
 	public BoardVo read(int no) {
 		return sqlSession.selectOne("board.read", no);
 	}
+	
+	public int update(int boardNo, String title, String content) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("no", boardNo);
+		map.put("title", title);
+		map.put("content", content);
+		
+		return sqlSession.update("board.update", map);
+	}
 }

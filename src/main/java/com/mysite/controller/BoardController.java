@@ -50,4 +50,23 @@ public class BoardController {
 		model.addAttribute("currNo", currNo);
 		return "/board/read";
 	}
+	
+	@RequestMapping(value="/modifyform")
+	public String modifyform(@RequestParam("currNo") int currNo, @RequestParam("boardNo") int boardNo, Model model) {
+		BoardVo boardVo = boardService.read(boardNo);
+		String temp = boardVo.getContent().replace("<br/>", "\r\n");
+		boardVo.setContent(temp);
+		
+		model.addAttribute("vo", boardVo);
+		model.addAttribute("currNo", currNo);
+		return "/board/modifyform";
+	}
+	
+	@RequestMapping(value="/modify", method = RequestMethod.POST)
+	public String modify(@RequestParam("currNo") int currNo, @RequestParam("boardNo") int boardNo, 
+						 @RequestParam("title") String title, @RequestParam("content") String content, Model model) {
+		boardService.update(boardNo, title, content);
+		
+		return "redirect:/board/read?currNo="+currNo+"&no="+boardNo;
+	}
 }

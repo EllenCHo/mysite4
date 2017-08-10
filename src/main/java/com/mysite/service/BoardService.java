@@ -45,4 +45,10 @@ public class BoardService {
 	public BoardVo read(int no) {
 		return boardDao.read(no);
 	}
+	
+	public int update(int boardNo, String title, String content) {
+		String temp = content.replace("\r\n", "<br/>");
+		
+		return boardDao.update(boardNo, title, temp);
+	}
 }
