@@ -84,11 +84,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="search", method=RequestMethod.GET)
-	public String search(@RequestParam("kwd") String voca, Model model) {
-		List<BoardVo> list = boardService.search(voca);
+	public String search(@RequestParam("currNo") int currNo, @RequestParam("kwd") String voca, Model model) {
+		PageVo page = boardService.getSearchPage(currNo, voca);
+		List<BoardVo> list = boardService.search(voca, currNo, page.getPageNo());
 		
 		model.addAttribute("list", list);
-		
+		model.addAttribute("page", page);
+		model.addAttribute("search", 1);
+		model.addAttribute("voca", voca);
 		return "/board/list";
 	}
 }

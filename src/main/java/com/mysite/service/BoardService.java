@@ -56,8 +56,15 @@ public class BoardService {
 		return boardDao.delete(boardNo);
 	}
 	
-	public List<BoardVo> search(String voca) {
-		return boardDao.search(voca);
+	public List<BoardVo> search(String voca, int currNo, int pageNo) {
+		int totalCount = boardDao.getTotalSearchCount(voca);
+		return boardDao.search(voca, currNo, pageNo, totalCount);
+	}
+	
+	public PageVo getSearchPage(int currNo, String voca) {
+		int totalCount = boardDao.getTotalSearchCount(voca);
+		pageVo.PageSetting(currNo, totalCount);
+		return pageVo;
 	}
 	
 	public int hit(int no) {

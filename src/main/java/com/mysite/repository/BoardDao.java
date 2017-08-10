@@ -48,8 +48,16 @@ public class BoardDao {
 		return sqlSession.delete("board.delete", boardNo);
 	}
 	
-	public List<BoardVo> search(String voca) {
-		return sqlSession.selectList("board.search", '%' + voca + '%');
+	public List<BoardVo> search(String voca, int currNo, int pageNo, int totalCount) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("endNo", totalCount - (currNo-1) * pageNo);
+		map.put("startNo", totalCount - currNo * pageNo);
+		map.put("voca", '%' + voca + '%');
+		return sqlSession.selectList("board.search", map);
+	}
+	
+	public int getTotalSearchCount(String voca) {
+		return sqlSession.selectOne("board.searchCount", '%' + voca + '%');
 	}
 	
 	public int hit(int no) {
