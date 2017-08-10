@@ -1,7 +1,7 @@
 package com.mysite.vo;
 
 public class BoardVo {
-	private int num;
+	private int rn;
 	private int no;
 	private String title;
 	private String content;
@@ -31,8 +31,8 @@ public class BoardVo {
 
 	
 
-	public BoardVo(int num, int no, String title, String content, int hit, String regDate, int userNo, String name) {
-		this.num = num;
+	public BoardVo(int rn, int no, String title, String content, int hit, String regDate, int userNo, String name) {
+		this.rn = rn;
 		this.no = no;
 		this.title = title;
 		this.content = content;
@@ -98,12 +98,12 @@ public class BoardVo {
 		this.name = name;
 	}
 
-	public int getNum() {
-		return num;
+	public int getRn() {
+		return rn;
 	}
 
-	public void setNum(int num) {
-		this.num = num;
+	public void setRn(int rn) {
+		this.rn = rn;
 	}
 
 	@Override

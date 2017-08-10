@@ -2,4 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
+	<select id="getList" parameterType="map" resultType="com.mysite.vo.BoardVo">
+		<![CDATA[
+			select rn, no ,title, content, hit, regDate, name
+			from (select rownum rn, no, title, content, hit, regDate, name
+			        from (select board.no no, title, content, hit, reg_date regDate, name
+			              from board, users
+			              where users.no = board.user_no
+			              order by board.no asc)
+			        order by rn desc)
+			where rn > #{startNo} and rn <= #{endNo}
+		]]>
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		<![CDATA[
+			select count(*) from board
+		]]>
+	</select>
 </mapper>

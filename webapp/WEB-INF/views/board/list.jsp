@@ -31,7 +31,7 @@
 					</tr>	
 					<c:forEach items="${list }" var="vo">			
 					<tr>
-						<td>${vo.num }</td>
+						<td>${vo.rn }</td>
 						<td><a href="${pageContext.request.contextPath }/bs?a=read&no=${vo.no }">${vo.title }</a></td>
 						<td>${vo.name }</td>
 						<td>${vo.hit }</td>
@@ -49,11 +49,11 @@
 					<ul>
 						<!-- 처음 페이지 번호가 첫페이지보다 작을 경우 나타나도록 하자 -->
 						<c:if test="${page.firstNo > 1 }">
-							<li><a href="${pageContext.request.contextPath }/bs?pageNo=${page.currNo - 1 }">◀</a></li>
+							<li><a href="${pageContext.request.contextPath }/board/list?currNo=${page.currNo - 1 }">◀</a></li>
 						</c:if>
 						<c:forEach var="i" begin="${page.firstNo }" end="${page.endNo }" step="1">
 							<c:if test="${i != page.currNo }">
-								<li><a href="${pageContext.request.contextPath }/bs?pageNo=${i }">${i }</a></li>
+								<li><a href="${pageContext.request.contextPath }/board/list?currNo=${i }">${i }</a></li>
 							</c:if>
 							<!-- 선택된 페이지일 경우 밑의 줄처럼 하기 -->
 							<c:if test="${i == page.currNo }">
@@ -62,13 +62,13 @@
 						</c:forEach>
 						<!-- 마지막 페이지 번호가 총 페이지번호보다 작을 경우 나타나도록 하자 -->
 						<c:if test="${page.endNo < page.endPage }">
-							<li><a href="${pageContext.request.contextPath }/bs?pageNo=${page.currNo + 1 }">▶</a></li>
+							<li><a href="${pageContext.request.contextPath }/board/list?currNo=${page.currNo + 1 }">▶</a></li>
 						</c:if>
 					</ul>
 				</div>	
 				<c:if test="${!(empty authUser) }">			
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/bs?a=writeform" id="new-book">글쓰기</a>
+					<a href="${pageContext.request.contextPath }/board/writeform" id="new-book">글쓰기</a>
 				</div>
 				</c:if>				
 			</div>
