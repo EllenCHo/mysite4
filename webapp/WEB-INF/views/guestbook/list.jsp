@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link href="/mysite/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath }/assets/css/guestbook.css" rel="stylesheet" type="text/css">
 	<title>Insert title here</title>
 </head>
 <body>
@@ -18,7 +18,7 @@
 			<div id="content">
 				<div id="guestbook">
 					
-					<form action="/mysite/gb?a=insert" method="post">
+					<form action="${pageContext.request.contextPath }/gb/insert" method="post">
 						
 						<table>
 							<tr>
@@ -41,7 +41,7 @@
 									<td>[${vo.no }]</td>
 									<td>${vo.name }</td>
 									<td>${vo.regDate }</td>
-									<td><a href="/mysite/gb?a=deleteform&no=${vo.no }">삭제</a></td>
+									<td><a href="${pageContext.request.contextPath }/gb?a=deleteform&no=${vo.no }">삭제</a></td>
 								</tr>
 								<tr>
 									<td colspan=4>
