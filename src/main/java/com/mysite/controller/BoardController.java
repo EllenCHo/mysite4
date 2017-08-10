@@ -38,8 +38,8 @@ public class BoardController {
 
 	@RequestMapping(value="/write", method = RequestMethod.POST)
 	public String write(@ModelAttribute BoardVo boardVo) {
-		boardService.insert(boardVo);
-		return "redirect:/board/list?currNo=1";		//이따가 읽기가 되면 쓴 게시글을 볼수있도록 이동
+		int no = boardService.insert(boardVo);
+		return "redirect:/board/read?currNo=1&no="+no;		//이따가 읽기가 되면 쓴 게시글을 볼수있도록 이동
 	}
 	
 	@RequestMapping(value="/read")

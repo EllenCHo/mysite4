@@ -28,6 +28,12 @@
 		]]>
 	</insert>
 	
+	<select id="boardNo" resultType="int">
+		<![CDATA[
+			select seq_board_no.currval from dual
+		]]>
+	</select>
+	
 	<select id="read" parameterType="int" resultType="com.mysite.vo.BoardVo">
 		<![CDATA[
 			select no, title, content, user_no userNo
