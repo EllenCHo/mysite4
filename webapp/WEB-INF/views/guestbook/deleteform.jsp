@@ -18,7 +18,7 @@
 			<div id="content">
 				<div id="guestbook" class="delete-form">
 					
-					<form method="post" action="${pageContext.request.contextPath }/gb?a=delete">
+					<form method="post" action="${pageContext.request.contextPath }/gb/delete">
 						<input type="hidden" name="no" value="${param.no }"/>
 						<label>비밀번호</label>
 						<input type="password" name="password">
