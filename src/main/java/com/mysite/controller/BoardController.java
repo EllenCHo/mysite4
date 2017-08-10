@@ -28,6 +28,7 @@ public class BoardController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
+		model.addAttribute("act", "list");
 		return "/board/list";
 	}
 	
@@ -90,7 +91,7 @@ public class BoardController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
-		model.addAttribute("search", 1);
+		model.addAttribute("act", "search");
 		model.addAttribute("voca", voca);
 		return "/board/list";
 	}
