@@ -25,4 +25,8 @@ public class BoardDao {
 	public int getTotalCount() {
 		return sqlSession.selectOne("board.getTotalCount");
 	}
+	
+	public int insert(BoardVo boardVo) {
+		return sqlSession.insert("board.insert", boardVo);
+	}
 }

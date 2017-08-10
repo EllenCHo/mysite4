@@ -16,7 +16,7 @@
 		
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="${pageContext.request.contextPath }/bs?a=write">
+				<form class="board-form" method="post" action="${pageContext.request.contextPath }/board/write">
 					<input type = "hidden" name = "userNo" value="${authUser.no }">
 					<table class="tbl-ex">
 						<tr>
@@ -34,7 +34,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="${pageContext.request.contextPath }/bs">취소</a>
+						<a href="${pageContext.request.contextPath }/board/list?currNo=${param.currNo}">취소</a>
 						<input type="submit" value="등록">
 					</div>
 				</form>				

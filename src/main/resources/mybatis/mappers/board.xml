@@ -4,9 +4,9 @@
 <mapper namespace="board">
 	<select id="getList" parameterType="map" resultType="com.mysite.vo.BoardVo">
 		<![CDATA[
-			select rn, no ,title, content, hit, regDate, name
-			from (select rownum rn, no, title, content, hit, regDate, name
-			        from (select board.no no, title, content, hit, reg_date regDate, name
+			select rn, no ,title, content, hit, regDate, userNo, name
+			from (select rownum rn, no, title, content, hit, regDate, userNo, name
+			        from (select board.no no, title, content, hit, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate, user_no userNo, name
 			              from board, users
 			              where users.no = board.user_no
 			              order by board.no asc)
@@ -20,4 +20,11 @@
 			select count(*) from board
 		]]>
 	</select>
+	
+	<insert id="insert" parameterType="com.mysite.vo.BoardVo">
+		<![CDATA[
+			insert into board
+			values(seq_board_no.nextval, #{title}, #{content}, 0,  TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'), ${userNo})
+		]]>
+	</insert>
 </mapper>

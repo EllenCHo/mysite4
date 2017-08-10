@@ -68,7 +68,7 @@
 				</div>	
 				<c:if test="${!(empty authUser) }">			
 				<div class="bottom">
-					<a href="${pageContext.request.contextPath }/board/writeform" id="new-book">글쓰기</a>
+					<a href="${pageContext.request.contextPath }/board/writeform?currNo=${page.currNo}" id="new-book">글쓰기</a>
 				</div>
 				</c:if>				
 			</div>

@@ -1,5 +1,7 @@
 package com.mysite.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,22 @@ public class BoardService {
 		return boardDao.getList(currNo, pageNo, totalCount);
 	}
 	
-	public PageVo getPage(int pageNo) {
+	public PageVo getPage(int currNo) {
 		int totalCount = boardDao.getTotalCount();
-		pageVo.PageSetting(pageNo, totalCount);
+		pageVo.PageSetting(currNo, totalCount);
 		return pageVo;
+	}
+	
+	public int insert(BoardVo boardVo) {
+		String content = boardVo.getContent().replace("\r\n", "<br/>");
+		boardVo.setContent(content);
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date = sdf.format(cal.getTime());
+		
+		boardVo.setRegDate(date);
+		
+		return boardDao.insert(boardVo);
 	}
 }
