@@ -43,9 +43,18 @@
 	</select>
 	
 	<update id="update" parameterType="map">
-		update board
-		set title = #{title},
-			content = #{content}
-		where no = #{no}
+		<![CDATA[
+			update board
+			set title = #{title},
+				content = #{content}
+			where no = #{no}
+		]]>
 	</update>
+	
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+			delete from board
+			where no = #{no}
+		]]>
+	</delete>
 </mapper>

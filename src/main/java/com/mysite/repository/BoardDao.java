@@ -43,4 +43,8 @@ public class BoardDao {
 		
 		return sqlSession.update("board.update", map);
 	}
+	
+	public int delete(int boardNo) {
+		return sqlSession.delete("board.delete", boardNo);
+	}
 }
