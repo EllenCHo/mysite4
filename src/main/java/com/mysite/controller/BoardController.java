@@ -41,4 +41,13 @@ public class BoardController {
 		boardService.insert(boardVo);
 		return "redirect:/board/list?currNo=1";		//이따가 읽기가 되면 쓴 게시글을 볼수있도록 이동
 	}
+	
+	@RequestMapping(value="/read")
+	public String read(@RequestParam("no") int no, @RequestParam("currNo") int currNo, Model model) {
+		BoardVo boardVo = boardService.read(no);
+		
+		model.addAttribute("vo", boardVo);
+		model.addAttribute("currNo", currNo);
+		return "/board/read";
+	}
 }

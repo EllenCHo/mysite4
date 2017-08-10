@@ -27,4 +27,12 @@
 			values(seq_board_no.nextval, #{title}, #{content}, 0,  TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'), ${userNo})
 		]]>
 	</insert>
+	
+	<select id="read" parameterType="int" resultType="com.mysite.vo.BoardVo">
+		<![CDATA[
+			select title, content, user_no userNo
+			from board
+			where no = #{no}
+		]]>
+	</select>
 </mapper>

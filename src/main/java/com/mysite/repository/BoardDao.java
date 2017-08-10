@@ -29,4 +29,8 @@ public class BoardDao {
 	public int insert(BoardVo boardVo) {
 		return sqlSession.insert("board.insert", boardVo);
 	}
+	
+	public BoardVo read(int no) {
+		return sqlSession.selectOne("board.read", no);
+	}
 }

@@ -41,4 +41,8 @@ public class BoardService {
 		
 		return boardDao.insert(boardVo);
 	}
+	
+	public BoardVo read(int no) {
+		return boardDao.read(no);
+	}
 }
