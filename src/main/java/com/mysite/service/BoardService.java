@@ -55,4 +55,12 @@ public class BoardService {
 	public int delete(int boardNo) {
 		return boardDao.delete(boardNo);
 	}
+	
+	public List<BoardVo> search(String voca) {
+		return boardDao.search(voca);
+	}
+	
+	public int hit(int no) {
+		return boardDao.hit(no);
+	}
 }

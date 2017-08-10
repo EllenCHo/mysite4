@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,13 +40,16 @@ public class BoardController {
 	@RequestMapping(value="/write", method = RequestMethod.POST)
 	public String write(@ModelAttribute BoardVo boardVo) {
 		int no = boardService.insert(boardVo);
-		return "redirect:/board/read?currNo=1&no="+no;		//이따가 읽기가 되면 쓴 게시글을 볼수있도록 이동
+		return "redirect:/board/read/w?currNo=1&no="+no;		
 	}
 	
-	@RequestMapping(value="/read")
-	public String read(@RequestParam("no") int no, @RequestParam("currNo") int currNo, Model model) {
+	@RequestMapping(value="/read/{user}")
+	public String read(@PathVariable("user") String user, @RequestParam("no") int no, @RequestParam("currNo") int currNo, Model model) {
 		BoardVo boardVo = boardService.read(no);
 		
+		if(user.equals("u")) {
+			boardService.hit(no);
+		}
 		model.addAttribute("vo", boardVo);
 		model.addAttribute("currNo", currNo);
 		return "/board/read";
@@ -67,7 +71,7 @@ public class BoardController {
 						 @RequestParam("title") String title, @RequestParam("content") String content, Model model) {
 		boardService.update(boardNo, title, content);
 		
-		return "redirect:/board/read?currNo="+currNo+"&no="+boardNo;
+		return "redirect:/board/read/m?currNo="+currNo+"&no="+boardNo;
 	}
 	
 	@RequestMapping("/delete")
@@ -77,5 +81,14 @@ public class BoardController {
 			boardService.delete(boardNo);
 		}
 		return "redirect:/board/list?currNo="+currNo;
+	}
+	
+	@RequestMapping(value="search", method=RequestMethod.GET)
+	public String search(@RequestParam("kwd") String voca, Model model) {
+		List<BoardVo> list = boardService.search(voca);
+		
+		model.addAttribute("list", list);
+		
+		return "/board/list";
 	}
 }

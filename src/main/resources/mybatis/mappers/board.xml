@@ -57,4 +57,25 @@
 			where no = #{no}
 		]]>
 	</delete>
+	
+	<select id="search" parameterType="String" resultType="com.mysite.vo.BoardVo">
+		<![CDATA[
+			select rn, no ,title, content, hit, regDate, userNo, name
+			from (select rownum rn, no, title, content, hit, regDate, userNo, name
+			      from (select board.no no, title, content, hit, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate, user_no userNo, name
+			            from board, users
+			            where users.no = board.user_no
+			            order by board.no asc))
+			where title like %#{voca}% or name like %#{voca}%
+			order by rn desc
+		]]>
+	</select>
+	
+	<update id="updateHit" parameterType="int">
+		<![CDATA[
+			update board
+			set hit = hit + 1
+			where no = #{no}
+		]]>
+	</update>
 </mapper>
