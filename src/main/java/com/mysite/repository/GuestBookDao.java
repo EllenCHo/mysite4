@@ -1,6 +1,8 @@
 package com.mysite.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +21,13 @@ public class GuestBookDao {
 	
 	public int insert(GuestBookVo guestBookVo) {
 		return sqlSession.insert("guestbook.insert", guestBookVo);
+	}
+	
+	public int delete(int no, String password) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("no", no);
+		map.put("password", password);
+		
+		return sqlSession.delete("guestbook.delete", map);
 	}
 }

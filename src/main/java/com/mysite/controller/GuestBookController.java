@@ -38,5 +38,11 @@ public class GuestBookController {
 		model.addAttribute("no", no);
 		return "/guestbook/deleteform";
 	}
+	
+	@RequestMapping(value="/delete", method=RequestMethod.POST)
+	public String delete(@RequestParam("no") int no, @RequestParam("password") String password) {
+		guestBookService.delete(no, password);
+		return "redirect:/gb/list";
+	}
 
 }

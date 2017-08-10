@@ -16,4 +16,11 @@
 			values(seq_guestbook_no.nextval, #{name}, #{password}, #{content}, TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'))			
 		]]>
 	</insert>
+	
+	<delete id="delete" parameterType="map">
+		<![CDATA[
+			delete from guestbook
+			where no = #{no} and password = #{password}
+		]]>
+	</delete>
 </mapper>

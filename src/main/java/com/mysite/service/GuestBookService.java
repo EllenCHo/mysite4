@@ -31,4 +31,8 @@ public class GuestBookService {
 		
 		return guestBookDao.insert(guestBookVo);
 	}
+	
+	public int delete(int no, String password) {
+		return guestBookDao.delete(no, password);
+	}
 }
