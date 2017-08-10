@@ -49,7 +49,7 @@ public class BoardDao {
 	}
 	
 	public List<BoardVo> search(String voca) {
-		return sqlSession.selectList("board.search", voca);
+		return sqlSession.selectList("board.search", '%' + voca + '%');
 	}
 	
 	public int hit(int no) {

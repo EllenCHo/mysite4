@@ -66,7 +66,7 @@
 			            from board, users
 			            where users.no = board.user_no
 			            order by board.no asc))
-			where title like %#{voca}% or name like %#{voca}%
+			where title like #{voca} or name like #{voca}
 			order by rn desc
 		]]>
 	</select>
