@@ -73,7 +73,9 @@ public class UserController {
 		userVo.setNo(no);
 		
 		userService.updateUser(userVo);
+		
 		authUser.setName(userVo.getName());
+		
 		return "redirect:/main";
 	}
 }
