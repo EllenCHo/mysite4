@@ -40,4 +40,11 @@
 			where group_no = #{groupNo} and order_no > #{orderNo}
 		]]>
 	</update>
+	
+	<delete id="delete" parameterType="int">
+		<![CDATA[
+			delete from replyboard
+			where no = #{no}
+		]]>
+	</delete>
 </mapper>

@@ -35,7 +35,9 @@
 				</table>
 				<div class="bottom">
 					<a href="${pageContext.request.contextPath }/replyboard/list">글목록</a>
-					<a href="${pageContext.request.contextPath }/replyboard/replyform?boardNo=${vo.no}">답글</a>
+					<c:if test="${!(empty authUser) }">
+						<a href="${pageContext.request.contextPath }/replyboard/replyform?boardNo=${vo.no}">답글</a>
+					</c:if>
 					<c:if test="${vo.userNo == authUser.no }">
 						<a href="${pageContext.request.contextPath }/replyboard/modifyform?boardNo=${vo.no }">글수정</a>
 					</c:if>

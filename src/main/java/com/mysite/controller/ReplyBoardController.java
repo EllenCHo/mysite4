@@ -57,4 +57,13 @@ public class ReplyBoardController {
 		
 		return "/replyboard/replyform";
 	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam("BoardNo") int no, @RequestParam("auth") int auth, @RequestParam("user") int user ) {
+		if(auth == user) {
+			replyBoardService.delete(no);
+		}
+		
+		return "redirect:/replyboard/list";
+	}
 }

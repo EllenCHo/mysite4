@@ -33,5 +33,9 @@ public class ReplyBoardDao {
 		map.put("orderNo", orderNo);
 		return sqlSession.update("replyboard.increse", map);
 	}
+	
+	public int delete(int no) {
+		return sqlSession.delete("replyboard.delete", no);
+	}
 
 }

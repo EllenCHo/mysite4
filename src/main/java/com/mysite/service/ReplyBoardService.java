@@ -40,5 +40,9 @@ public class ReplyBoardService {
 	public ReplyBoardVo read(int no) {
 		return replyBoardDao.read(no);
 	}
+	
+	public int delete(int no) {
+		return replyBoardDao.delete(no);
+	}
 
 }
