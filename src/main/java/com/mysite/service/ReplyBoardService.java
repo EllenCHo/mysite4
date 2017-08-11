@@ -2,6 +2,7 @@ package com.mysite.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,10 @@ import com.mysite.vo.ReplyBoardVo;
 public class ReplyBoardService {
 	@Autowired
 	ReplyBoardDao replyBoardDao;
+	
+	public List<ReplyBoardVo> getList() {
+		return replyBoardDao.getList();
+	}
 	
 	public int insert(ReplyBoardVo vo) {
 		String content = vo.getContent().replace("\r\n", "<br/>");

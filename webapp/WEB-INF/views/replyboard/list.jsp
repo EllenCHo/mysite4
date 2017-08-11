@@ -36,7 +36,7 @@
 					</tr>
 					<c:forEach items="${list }" var="vo">
 						<tr>
-							<td>${vo.rn }</td>
+							<td>${vo.no }</td>
 							<td><a
 								href="${pageContext.request.contextPath }/board/${act }/read/u?currNo=${page.currNo}&no=${vo.no }&kwd=${voca}">${vo.title }</a></td>
 							<td>${vo.name }</td>

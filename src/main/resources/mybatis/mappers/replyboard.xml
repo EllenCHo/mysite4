@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="replyboard">
+	<select id="getList" resultType="com.mysite.vo.ReplyBoardVo">
+		<![CDATA[
+			select replyboard.no no, title, content, hit, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate, user_no userNo,
+				   name, group_no groupNo, order_no orderNo, depth
+			from replyboard, users
+			where users.no = user_no
+			order by no desc
+		]]>
+	</select>
 	<insert id="insert" parameterType="com.mysite.vo.ReplyBoardVo">
 		<![CDATA[
 			insert into replyboard
