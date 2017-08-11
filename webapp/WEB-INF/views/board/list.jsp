@@ -21,7 +21,7 @@
 				<form id="search_form"
 					action="${pageContext.request.contextPath }/board/search"
 					method="get">
-					<input type="text" id="kwd" name="kwd" value="${kwd }"> <input
+					<input type="text" id="kwd" name="kwd" value="${voca}"> <input
 						type="hidden" name="currNo" value="1"> <input
 						type="submit" value="찾기">
 				</form>
@@ -38,7 +38,7 @@
 						<tr>
 							<td>${vo.rn }</td>
 							<td><a
-								href="${pageContext.request.contextPath }/board/read/u?currNo=${page.currNo}&no=${vo.no }">${vo.title }</a></td>
+								href="${pageContext.request.contextPath }/board/${act }/read/u?currNo=${page.currNo}&no=${vo.no }&kwd=${voca}">${vo.title }</a></td>
 							<td>${vo.name }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.regDate }</td>

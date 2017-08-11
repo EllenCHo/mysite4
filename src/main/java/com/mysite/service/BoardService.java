@@ -42,8 +42,14 @@ public class BoardService {
 		return boardDao.insert(boardVo);
 	}
 	
-	public BoardVo read(int no) {
-		return boardDao.read(no);
+	public BoardVo read(int no, String user) {
+		BoardVo vo =  boardDao.read(no);
+		
+		if(user.equals("u") && vo != null) {
+			boardDao.hit(no);
+		}
+		
+		return vo;
 	}
 	
 	public int update(int boardNo, String title, String content) {
@@ -66,8 +72,5 @@ public class BoardService {
 		pageVo.PageSetting(currNo, totalCount);
 		return pageVo;
 	}
-	
-	public int hit(int no) {
-		return boardDao.hit(no);
-	}
+
 }

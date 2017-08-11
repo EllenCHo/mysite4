@@ -44,21 +44,22 @@ public class BoardController {
 		return "redirect:/board/read/w?currNo=1&no="+no;		
 	}
 	
-	@RequestMapping(value="/read/{user}")
-	public String read(@PathVariable("user") String user, @RequestParam("no") int no, @RequestParam("currNo") int currNo, Model model) {
-		BoardVo boardVo = boardService.read(no);
+	@RequestMapping(value="/{act}/read/{user}")
+	public String read(@PathVariable("act") String act , @PathVariable("user") String user, 
+					   @RequestParam("no") int no, @RequestParam("currNo") int currNo,
+					   @RequestParam("kwd") String voca, Model model) {
+		BoardVo boardVo = boardService.read(no, user);
 		
-		if(user.equals("u")) {
-			boardService.hit(no);
-		}
 		model.addAttribute("vo", boardVo);
+		model.addAttribute("act", act);
+		model.addAttribute("voca", voca);
 		model.addAttribute("currNo", currNo);
 		return "/board/read";
 	}
 	
 	@RequestMapping(value="/modifyform")
 	public String modifyform(@RequestParam("currNo") int currNo, @RequestParam("boardNo") int boardNo, Model model) {
-		BoardVo boardVo = boardService.read(boardNo);
+		BoardVo boardVo = boardService.read(boardNo, "");
 		String temp = boardVo.getContent().replace("<br/>", "\r\n");
 		boardVo.setContent(temp);
 		
