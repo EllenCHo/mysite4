@@ -1,6 +1,8 @@
 package com.mysite.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,13 @@ public class ReplyBoardDao {
 	
 	public ReplyBoardVo read(int no) {
 		return sqlSession.selectOne("replyboard.read", no);
+	}
+	
+	public int increseOrderNo(int groupNo, int orderNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("groupNo", groupNo);
+		map.put("orderNo", orderNo);
+		return sqlSession.update("replyboard.increse", map);
 	}
 
 }

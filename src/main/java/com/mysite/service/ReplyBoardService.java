@@ -29,6 +29,11 @@ public class ReplyBoardService {
 		
 		vo.setRegDate(date);
 		
+		if(vo.getGroupNo() != 0) {			//답글을 작성할때
+			replyBoardDao.increseOrderNo(vo.getGroupNo(), vo.getOrderNo());
+			vo.setOrderNo(vo.getOrderNo()+1);
+			vo.setDepth(vo.getDepth()+1);
+		} 
 		return replyBoardDao.insert(vo);
 	}
 	

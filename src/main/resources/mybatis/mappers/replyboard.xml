@@ -8,15 +8,20 @@
 				   name, group_no groupNo, order_no orderNo, depth
 			from replyboard, users
 			where users.no = user_no
-			order by no desc
+			order by group_no desc, order_no asc
 		]]>
 	</select>
 	
 	<insert id="insert" parameterType="com.mysite.vo.ReplyBoardVo">
 		<![CDATA[
 			insert into replyboard
-			values(seq_reply_no.nextval, #{title}, #{content}, 0, TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'), ${userNo}, seq_reply_no.currval, 1, 0)
 		]]>
+			<if test="groupNo == 0">
+				values(seq_reply_no.nextval, #{title}, #{content}, 0, TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'), #{userNo}, seq_reply_no.currval, 1, 0)
+			</if>
+			<if test="groupNo != 0">
+				values(seq_reply_no.nextval, #{title}, #{content}, 0, TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'), #{userNo}, #{groupNo}, #{orderNo}, #{depth})
+			</if>
 	</insert>
 	
 	<select id="read" parameterType="int" resultType="com.mysite.vo.ReplyBoardVo">
@@ -27,4 +32,12 @@
 			where no = #{no}
 		]]>
 	</select>
+	
+	<update id="increse" parameterType="map">
+		<![CDATA[
+			update replyboard
+			set order_no = order_no + 1
+			where group_no = #{groupNo} and order_no > #{orderNo}
+		]]>
+	</update>
 </mapper>

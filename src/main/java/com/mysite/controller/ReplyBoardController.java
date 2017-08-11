@@ -34,6 +34,7 @@ public class ReplyBoardController {
 	
 	@RequestMapping("/write")
 	public String write(@ModelAttribute ReplyBoardVo vo) {
+		System.out.println(vo.toString());
 		replyBoardService.insert(vo);
 		
 		return "redirect:/replyboard/list";
@@ -46,5 +47,14 @@ public class ReplyBoardController {
 		model.addAttribute("vo", vo);
 		
 		return "/replyboard/read";
+	}
+	
+	@RequestMapping("/replyform")
+	public String replyform(@RequestParam("boardNo") int no, Model model) {
+		ReplyBoardVo vo = replyBoardService.read(no);
+		
+		model.addAttribute("vo", vo);
+		
+		return "/replyboard/replyform";
 	}
 }
