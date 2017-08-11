@@ -58,22 +58,26 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/modifyform")
-	public String modifyform(@RequestParam("currNo") int currNo, @RequestParam("boardNo") int boardNo, Model model) {
+	public String modifyform(@RequestParam("act") String act,@RequestParam("currNo") int currNo, 
+							 @RequestParam("boardNo") int boardNo, @RequestParam("kwd") String voca,Model model) {
 		BoardVo boardVo = boardService.read(boardNo, "");
 		String temp = boardVo.getContent().replace("<br/>", "\r\n");
 		boardVo.setContent(temp);
 		
+		model.addAttribute("act", act);
 		model.addAttribute("vo", boardVo);
 		model.addAttribute("currNo", currNo);
+		model.addAttribute("voca", voca);
 		return "/board/modifyform";
 	}
 	
 	@RequestMapping(value="/modify", method = RequestMethod.POST)
-	public String modify(@RequestParam("currNo") int currNo, @RequestParam("boardNo") int boardNo, 
+	public String modify(@RequestParam("act") String act, @RequestParam("kwd") String voca,
+						 @RequestParam("currNo") int currNo, @RequestParam("boardNo") int boardNo, 
 						 @RequestParam("title") String title, @RequestParam("content") String content, Model model) {
 		boardService.update(boardNo, title, content);
 		
-		return "redirect:/board/list/read/m?currNo="+currNo+"&no="+boardNo+"&kwd=";
+		return "redirect:/board/"+act+"/read/m?currNo="+currNo+"&no="+boardNo+"&kwd="+voca;
 	}
 	
 	@RequestMapping("/{act}/delete")
