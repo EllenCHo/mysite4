@@ -41,7 +41,7 @@ public class BoardController {
 	@RequestMapping(value="/write", method = RequestMethod.POST)
 	public String write(@ModelAttribute BoardVo boardVo) {
 		int no = boardService.insert(boardVo);
-		return "redirect:/board/read/w?currNo=1&no="+no;		
+		return "redirect:/board/list/read/w?currNo=1&no="+no+"&kwd=";		
 	}
 	
 	@RequestMapping(value="/{act}/read/{user}")
@@ -73,7 +73,7 @@ public class BoardController {
 						 @RequestParam("title") String title, @RequestParam("content") String content, Model model) {
 		boardService.update(boardNo, title, content);
 		
-		return "redirect:/board/read/m?currNo="+currNo+"&no="+boardNo;
+		return "redirect:/board/list/read/m?currNo="+currNo+"&no="+boardNo+"&kwd=";
 	}
 	
 	@RequestMapping("/delete")

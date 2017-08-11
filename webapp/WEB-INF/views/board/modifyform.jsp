@@ -34,7 +34,7 @@
 					</table>
 					<input type="hidden" name="boardNo" value="${vo.no }">
 					<div class="bottom">
-						<a href="${pageContext.request.contextPath }/board/read?currNo=${param.currNo}&no=${vo.no }">취소</a>
+						<a href="${pageContext.request.contextPath }/board/list?currNo=1">취소</a>
 						<input type="submit" value="수정">
 					</div>
 				</form>				
