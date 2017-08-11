@@ -76,13 +76,14 @@ public class BoardController {
 		return "redirect:/board/list/read/m?currNo="+currNo+"&no="+boardNo+"&kwd=";
 	}
 	
-	@RequestMapping("/delete")
-	public String delete(@RequestParam("currNo") int currNo, @RequestParam("boardNo") int boardNo, 
-						 @RequestParam("auth") int auth, @RequestParam("user") int user) {
+	@RequestMapping("/{act}/delete")
+	public String delete(@RequestParam("currNo") int currNo, @PathVariable("act") String act,
+						 @RequestParam("boardNo") int boardNo, @RequestParam("auth") int auth, 
+						 @RequestParam("user") int user, @RequestParam("kwd") String voca) {
 		if(auth == user) {
 			boardService.delete(boardNo);
 		}
-		return "redirect:/board/list?currNo="+currNo;
+		return "redirect:/board/"+act+"?currNo="+currNo+"&kwd="+voca;
 	}
 	
 	@RequestMapping(value="search", method=RequestMethod.GET)
