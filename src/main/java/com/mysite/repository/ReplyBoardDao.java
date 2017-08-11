@@ -16,8 +16,13 @@ public class ReplyBoardDao {
 	public List<ReplyBoardVo> getList() {
 		return sqlSession.selectList("replyboard.getList");
 	}
+	
 	public int insert(ReplyBoardVo vo) {
 		return sqlSession.insert("replyboard.insert", vo);
+	}
+	
+	public ReplyBoardVo read(int no) {
+		return sqlSession.selectOne("replyboard.read", no);
 	}
 
 }

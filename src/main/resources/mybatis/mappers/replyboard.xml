@@ -11,10 +11,20 @@
 			order by no desc
 		]]>
 	</select>
+	
 	<insert id="insert" parameterType="com.mysite.vo.ReplyBoardVo">
 		<![CDATA[
 			insert into replyboard
 			values(seq_reply_no.nextval, #{title}, #{content}, 0, TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'), ${userNo}, seq_reply_no.currval, 1, 0)
 		]]>
 	</insert>
+	
+	<select id="read" parameterType="int" resultType="com.mysite.vo.ReplyBoardVo">
+		<![CDATA[
+			select no, title, content, user_no userNo,
+				   group_no groupNo, order_no orderNo, depth
+			from replyboard
+			where no = #{no}
+		]]>
+	</select>
 </mapper>

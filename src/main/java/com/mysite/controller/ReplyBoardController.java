@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.service.ReplyBoardService;
 import com.mysite.vo.ReplyBoardVo;
@@ -36,5 +37,14 @@ public class ReplyBoardController {
 		replyBoardService.insert(vo);
 		
 		return "redirect:/replyboard/list";
+	}
+	
+	@RequestMapping("/read")
+	public String read(@RequestParam("no") int no, Model model) {
+		ReplyBoardVo vo = replyBoardService.read(no);
+		
+		model.addAttribute("vo", vo);
+		
+		return "/replyboard/read";
 	}
 }

@@ -31,5 +31,9 @@ public class ReplyBoardService {
 		
 		return replyBoardDao.insert(vo);
 	}
+	
+	public ReplyBoardVo read(int no) {
+		return replyBoardDao.read(no);
+	}
 
 }

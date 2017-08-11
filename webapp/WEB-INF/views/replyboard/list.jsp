@@ -38,13 +38,13 @@
 						<tr>
 							<td>${vo.no }</td>
 							<td><a
-								href="${pageContext.request.contextPath }/board/${act }/read/u?currNo=${page.currNo}&no=${vo.no }&kwd=${voca}">${vo.title }</a></td>
+								href="${pageContext.request.contextPath }/replyboard/read?no=${vo.no }">${vo.title }</a></td>
 							<td>${vo.name }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.regDate }</td>
 							<c:if test="${authUser.no == vo.userNo }">
 								<td><a
-									href="${pageContext.request.contextPath }/board/delete/?boardNo=${vo.no }&auth=${authUser.no }
+									href="${pageContext.request.contextPath }/replyboard/delete/?boardNo=${vo.no }&auth=${authUser.no }
 										  &user=${vo.userNo }"
 									class="del">삭제</a></td>
 							</c:if>
