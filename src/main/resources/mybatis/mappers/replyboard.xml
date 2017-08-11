@@ -2,4 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="replyboard">
+	<insert id="insert" parameterType="com.mysite.vo.ReplyBoardVo">
+		<![CDATA[
+			insert into replyboard
+			values(seq_reply_no.nextval, #{title}, #{content}, 0, TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'), ${userNo}, seq_reply_no.currval, 1, 0)
+		]]>
+	</insert>
 </mapper>
