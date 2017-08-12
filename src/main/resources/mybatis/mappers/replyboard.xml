@@ -37,9 +37,19 @@
 		<![CDATA[
 			update replyboard
 			set order_no = order_no + 1
-			where group_no = #{groupNo} and order_no > #{orderNo}
+			where group_no = #{groupNo} 
+				  and order_no > #{orderNo} 
+				  and depth <= #{depth}
 		]]>
 	</update>
+	
+	<select id="getMaxOrderNo" parameterType="int" resultType="Integer">
+		<![CDATA[
+			select max(order_no) orderNo
+			from replyboard
+			where depth = #{depth}
+		]]>
+	</select>
 	
 	<delete id="delete" parameterType="int">
 		<![CDATA[

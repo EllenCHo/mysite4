@@ -59,7 +59,7 @@ public class ReplyBoardController {
 	}
 	
 	@RequestMapping("/delete")
-	public String delete(@RequestParam("BoardNo") int no, @RequestParam("auth") int auth, @RequestParam("user") int user ) {
+	public String delete(@RequestParam("boardNo") int no, @RequestParam("auth") int auth, @RequestParam("user") int user ) {
 		if(auth == user) {
 			replyBoardService.delete(no);
 		}

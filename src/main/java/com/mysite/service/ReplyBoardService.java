@@ -30,8 +30,15 @@ public class ReplyBoardService {
 		vo.setRegDate(date);
 		
 		if(vo.getGroupNo() != 0) {			//답글을 작성할때
-			replyBoardDao.increseOrderNo(vo.getGroupNo(), vo.getOrderNo());
-			vo.setOrderNo(vo.getOrderNo()+1);
+			int i = replyBoardDao.increseOrderNo(vo.getGroupNo(), vo.getOrderNo(), vo.getDepth());
+			if(i==0) {						//같은 depth 계층에서 답글을 쓸
+				Integer no = replyBoardDao.getMaxOrderNo(vo.getDepth()+1);
+				int orderNo = no == null? 1 : no;			//처음 답글을 쓰는거라서 null이 들어오면 1로 치환
+				
+				vo.setOrderNo(orderNo+1);
+			}else {
+				vo.setOrderNo(vo.getOrderNo()+1);
+			}
 			vo.setDepth(vo.getDepth()+1);
 		} 
 		return replyBoardDao.insert(vo);

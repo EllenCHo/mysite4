@@ -27,11 +27,16 @@ public class ReplyBoardDao {
 		return sqlSession.selectOne("replyboard.read", no);
 	}
 	
-	public int increseOrderNo(int groupNo, int orderNo) {
+	public int increseOrderNo(int groupNo, int orderNo, int depth) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("groupNo", groupNo);
 		map.put("orderNo", orderNo);
+		map.put("depth", depth);
 		return sqlSession.update("replyboard.increse", map);
+	}
+	
+	public Integer getMaxOrderNo(int depth) {
+		return sqlSession.selectOne("replyboard.getMaxOrderNo", depth);
 	}
 	
 	public int delete(int no) {
