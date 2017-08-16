@@ -57,4 +57,13 @@
 			where no = #{no}
 		]]>
 	</delete>
+	
+	<update id="update" parameterType="map">
+		<![CDATA[
+			update replyboard
+			set title = #{title},
+				content = #{content}
+			where no = #{no}
+		]]>
+	</update>
 </mapper>

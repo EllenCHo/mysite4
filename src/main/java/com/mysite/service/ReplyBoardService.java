@@ -51,5 +51,10 @@ public class ReplyBoardService {
 	public int delete(int no) {
 		return replyBoardDao.delete(no);
 	}
+	
+	public int update(int no, String title, String content) {
+		content.replace("\r\n", "<br/>");
+		return replyBoardDao.update(no, title, content);
+	}
 
 }

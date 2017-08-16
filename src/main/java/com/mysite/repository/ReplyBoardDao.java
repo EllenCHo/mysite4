@@ -42,5 +42,13 @@ public class ReplyBoardDao {
 	public int delete(int no) {
 		return sqlSession.delete("replyboard.delete", no);
 	}
+	
+	public int update(int no, String title, String content) {
+		Map<String, Object> map = new HashMap<String, Object> ();
+		map.put("no", no);
+		map.put("title", title);
+		map.put("content", content);
+		return sqlSession.update("replyboard.update", map);
+	}
 
 }
