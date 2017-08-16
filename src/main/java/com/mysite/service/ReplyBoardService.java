@@ -8,15 +8,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mysite.repository.ReplyBoardDao;
+import com.mysite.vo.PageVo;
 import com.mysite.vo.ReplyBoardVo;
 
 @Service
 public class ReplyBoardService {
 	@Autowired
 	ReplyBoardDao replyBoardDao;
+	@Autowired
+	PageVo vo;
 	
-	public List<ReplyBoardVo> getList() {
-		return replyBoardDao.getList();
+	public List<ReplyBoardVo> getList(int currNo, int pageNo) {
+		int totalCount = replyBoardDao.getTotalCount();
+		int startNo = totalCount - currNo * pageNo;
+		int endNo = totalCount- (currNo - 1) * pageNo;
+		return replyBoardDao.getList(startNo, endNo);
+	}
+	
+	public PageVo setPage(int currNo) {
+		int totalCount = replyBoardDao.getTotalCount();
+		vo.PageSetting(currNo, totalCount);
+		
+		return vo;
 	}
 	
 	public int insert(ReplyBoardVo vo) {

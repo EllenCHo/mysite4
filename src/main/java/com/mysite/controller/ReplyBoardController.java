@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mysite.service.ReplyBoardService;
+import com.mysite.vo.PageVo;
 import com.mysite.vo.ReplyBoardVo;
 
 @Controller
@@ -21,11 +22,11 @@ public class ReplyBoardController {
 	ReplyBoardService replyBoardService;
 
 	@RequestMapping("/list")
-	public String list(Model model) {
-		List<ReplyBoardVo> list = replyBoardService.getList();
-
+	public String list(@RequestParam("currNo") int currNo, Model model) {
+		PageVo page = replyBoardService.setPage(currNo);
+		List<ReplyBoardVo> list = replyBoardService.getList(currNo, page.getPageNo());
 		model.addAttribute("list", list);
-
+		model.addAttribute("page", page);
 		return "/replyboard/list";
 	}
 

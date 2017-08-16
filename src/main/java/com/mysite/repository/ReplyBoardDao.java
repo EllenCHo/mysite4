@@ -15,8 +15,15 @@ public class ReplyBoardDao {
 	@Autowired
 	SqlSession sqlSession;
 	
-	public List<ReplyBoardVo> getList() {
-		return sqlSession.selectList("replyboard.getList");
+	public List<ReplyBoardVo> getList(int startNo, int endNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("startNo", startNo);
+		map.put("endNo", endNo);
+		return sqlSession.selectList("replyboard.getList", map);
+	}
+	
+	public int getTotalCount() {
+		return sqlSession.selectOne("replyboard.getTotalCount");
 	}
 	
 	public int insert(ReplyBoardVo vo) {

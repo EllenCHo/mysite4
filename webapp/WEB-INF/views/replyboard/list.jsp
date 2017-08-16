@@ -57,18 +57,18 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<%-- <div class="pager">
+				<div class="pager">
 					<ul>
 						<!-- 처음 페이지 번호가 첫페이지보다 작을 경우 나타나도록 하자 -->
 						<c:if test="${page.firstNo > 1 }">
 							<li><a
-								href="${pageContext.request.contextPath }/board/${act }?currNo=${page.currNo - 1 }&kwd=${voca}">◀</a></li>
+								href="${pageContext.request.contextPath }/replyboard/list?currNo=${page.currNo - 1 }">◀</a></li>
 						</c:if>
 						<c:forEach var="i" begin="${page.firstNo }" end="${page.endNo }"
 							step="1">
 							<c:if test="${i != page.currNo }">
 								<li><a
-									href="${pageContext.request.contextPath }/board/${act }?currNo=${i }&kwd=${voca}">${i }</a></li>
+									href="${pageContext.request.contextPath }/replyboard/list?currNo=${i }">${i }</a></li>
 							</c:if>
 							<!-- 선택된 페이지일 경우 밑의 줄처럼 하기 -->
 							<c:if test="${i == page.currNo }">
@@ -78,10 +78,10 @@
 						<!-- 마지막 페이지 번호가 총 페이지번호보다 작을 경우 나타나도록 하자 -->
 						<c:if test="${page.endNo < page.endPage }">
 							<li><a
-								href="${pageContext.request.contextPath }/board/${act }?currNo=${page.currNo + 1 }&kwd=${voca}">▶</a></li>
+								href="${pageContext.request.contextPath }/replyboard/list?currNo=${page.currNo + 1 }">▶</a></li>
 						</c:if>
 					</ul>
-				</div> --%>
+				</div>
 				<c:if test="${!(empty authUser) }">
 					<div class="bottom">
 						<a

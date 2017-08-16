@@ -10,8 +10,9 @@
 					    	   name, group_no groupNo, order_no orderNo, depth
 					    from replyboard, users
 					    where users.no = user_no
-					    order by replyboard.no asc))
-			order by groupNo desc, orderNo asc, depth asc
+					    order by groupNo asc, orderNo desc, depth desc))
+			where rn > #{startNo} and rn <= #{endNo}
+			order by rn desc
 		]]>
 	</select>
 	
