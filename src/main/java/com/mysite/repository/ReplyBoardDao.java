@@ -35,12 +35,15 @@ public class ReplyBoardDao {
 		return sqlSession.update("replyboard.increse", map);
 	}
 	
-	public Integer getMaxOrderNo(int depth) {
-		return sqlSession.selectOne("replyboard.getMaxOrderNo", depth);
+	public Integer getMaxOrderNo(int groupNo, int depth) {
+		Map<String, Object> map = new HashMap<String, Object> ();
+		map.put("groupNo", groupNo);
+		map.put("depth", depth);
+		return sqlSession.selectOne("replyboard.getMaxOrderNo", map);
 	}
 	
-	public int delete(int no) {
-		return sqlSession.delete("replyboard.delete", no);
+	public int delete(ReplyBoardVo vo) {
+		return sqlSession.delete("replyboard.delete", vo);
 	}
 	
 	public int update(int no, String title, String content) {

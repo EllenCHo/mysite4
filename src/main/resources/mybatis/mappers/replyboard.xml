@@ -46,15 +46,15 @@
 		]]>
 	</update>
 	
-	<select id="getMaxOrderNo" parameterType="int" resultType="Integer">
+	<select id="getMaxOrderNo" parameterType="map" resultType="Integer">
 		<![CDATA[
 			select max(order_no) orderNo
 			from replyboard
-			where depth = #{depth}
+			where group_no = #{groupNo} and depth = #{depth}
 		]]>
 	</select>
 	
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="com.mysite.vo.ReplyBoardVo">
 		<![CDATA[
 			delete from replyboard
 			where no = #{no}
@@ -89,7 +89,7 @@
 						      where users.no = user_no)
 					    where title like #{kwd} or content like #{kwd}
 					    order by no asc))
-			order by groupNo desc, orderNo asc
+			order by no desc
 		]]>
 	</select>
 </mapper>

@@ -64,7 +64,8 @@ public class ReplyBoardController {
 	public String delete(@RequestParam("boardNo") int no, @RequestParam("auth") int auth,
 			@RequestParam("user") int user) {
 		if (auth == user) {
-			replyBoardService.delete(no);
+			ReplyBoardVo vo = replyBoardService.read(no, "");
+			replyBoardService.delete(vo);
 		}
 
 		return "redirect:/replyboard/list";
