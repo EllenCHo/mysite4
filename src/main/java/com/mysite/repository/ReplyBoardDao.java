@@ -50,5 +50,9 @@ public class ReplyBoardDao {
 		map.put("content", content);
 		return sqlSession.update("replyboard.update", map);
 	}
+	
+	public int hit(int no) {
+		return sqlSession.update("replyboard.hit", no);
+	}
 
 }

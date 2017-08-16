@@ -4,11 +4,14 @@
 <mapper namespace="replyboard">
 	<select id="getList" resultType="com.mysite.vo.ReplyBoardVo">
 		<![CDATA[
-			select replyboard.no no, title, content, hit, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate, user_no userNo,
-				   name, group_no groupNo, order_no orderNo, depth
-			from replyboard, users
-			where users.no = user_no
-			order by group_no desc, order_no asc
+			select rn, no ,title, content, hit, regDate, userNo, name, groupNo, orderNo, depth
+			from (select rownum rn, no, title, content, hit, regDate, userNo, name, groupNo, orderNo, depth
+				  from (select replyboard.no no, title, content, hit, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate, user_no userNo,
+					    	   name, group_no groupNo, order_no orderNo, depth
+					    from replyboard, users
+					    where users.no = user_no
+					    order by replyboard.no asc))
+			order by groupNo desc, orderNo asc
 		]]>
 	</select>
 	
@@ -63,6 +66,14 @@
 			update replyboard
 			set title = #{title},
 				content = #{content}
+			where no = #{no}
+		]]>
+	</update>
+	
+	<update id="hit" parameterType="int">
+		<![CDATA[
+			update replyboard
+			set hit = hit + 1
 			where no = #{no}
 		]]>
 	</update>

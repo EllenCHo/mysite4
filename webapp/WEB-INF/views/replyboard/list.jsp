@@ -36,9 +36,15 @@
 					</tr>
 					<c:forEach items="${list }" var="vo">
 						<tr>
-							<td>${vo.no }</td>
-							<td><a
-								href="${pageContext.request.contextPath }/replyboard/read?no=${vo.no }">${vo.title }</a></td>
+							<td>${vo.rn }</td>
+							<td style="text-align:left">
+								<c:forEach var="i" begin="1" end="${vo.depth}" step="1">
+									&nbsp;  
+									<c:if test="${i == vo.depth}">
+										<img src="${pageContext.request.contextPath }/assets/images/reply.png" width ="16px" alt="답글"/>
+									</c:if>
+								</c:forEach>
+								<a href="${pageContext.request.contextPath }/replyboard/read/u?no=${vo.no }">${vo.title }</a></td>
 							<td>${vo.name }</td>
 							<td>${vo.hit }</td>
 							<td>${vo.regDate }</td>

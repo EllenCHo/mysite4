@@ -1,6 +1,7 @@
 package com.mysite.vo;
 
 public class ReplyBoardVo {
+	private int rn;
 	private int no;
 	private String title;
 	private String content;
@@ -14,8 +15,9 @@ public class ReplyBoardVo {
 	
 	public ReplyBoardVo() {}
 
-	public ReplyBoardVo(int no, String title, String content, int hit, String regDate, int userNo, String name,
+	public ReplyBoardVo(int rn, int no, String title, String content, int hit, String regDate, int userNo, String name,
 			int groupNo, int orderNo, int depth) {
+		this.rn = rn;
 		this.no = no;
 		this.title = title;
 		this.content = content;
@@ -26,6 +28,14 @@ public class ReplyBoardVo {
 		this.groupNo = groupNo;
 		this.orderNo = orderNo;
 		this.depth = depth;
+	}
+	
+	public int getRn() {
+		return rn;
+	}
+
+	public void setRn(int rn) {
+		this.rn = rn;
 	}
 
 	public int getNo() {

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -41,9 +42,9 @@ public class ReplyBoardController {
 		return "redirect:/replyboard/list";
 	}
 
-	@RequestMapping("/read")
-	public String read(@RequestParam("no") int no, Model model) {
-		ReplyBoardVo vo = replyBoardService.read(no);
+	@RequestMapping("/read/{user}")
+	public String read(@RequestParam("no") int no, @PathVariable("user") String user,Model model) {
+		ReplyBoardVo vo = replyBoardService.read(no, user);
 
 		model.addAttribute("vo", vo);
 
@@ -52,7 +53,7 @@ public class ReplyBoardController {
 
 	@RequestMapping("/replyform")
 	public String replyform(@RequestParam("boardNo") int no, Model model) {
-		ReplyBoardVo vo = replyBoardService.read(no);
+		ReplyBoardVo vo = replyBoardService.read(no, "");
 
 		model.addAttribute("vo", vo);
 
@@ -71,7 +72,7 @@ public class ReplyBoardController {
 
 	@RequestMapping("modifyform")
 	public String modifyform(@RequestParam("boardNo") int no, Model model) {
-		ReplyBoardVo vo = replyBoardService.read(no);
+		ReplyBoardVo vo = replyBoardService.read(no, "");
 		String temp = vo.getContent().replace("<br/>", "\r\n");
 		vo.setContent(temp);
 		
@@ -84,6 +85,6 @@ public class ReplyBoardController {
 	public String modify(@RequestParam("boardNo") int no, @RequestParam("title") String title, @RequestParam("content") String content) {
 		replyBoardService.update(no, title, content);
 		
-		return "redirect:/replyboard/read?no="+no;
+		return "redirect:/replyboard/read/m?no="+no;
 	}
 }

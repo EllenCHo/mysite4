@@ -44,7 +44,10 @@ public class ReplyBoardService {
 		return replyBoardDao.insert(vo);
 	}
 	
-	public ReplyBoardVo read(int no) {
+	public ReplyBoardVo read(int no, String user) {
+		if(user.equals("u")) {
+			replyBoardDao.hit(no);
+		}
 		return replyBoardDao.read(no);
 	}
 	
