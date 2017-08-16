@@ -54,12 +54,23 @@
 		]]>
 	</select>
 	
-	<delete id="delete" parameterType="com.mysite.vo.ReplyBoardVo">
+	<delete id="delete" parameterType="map">
 		<![CDATA[
 			delete from replyboard
-			where no = #{no}
+			where group_no = #{vo.groupNo} 
+				  and depth >= #{vo.depth}
+				  and order_no >= #{vo.orderNo}
+				  and order_no < #{min}
 		]]>
 	</delete>
+	
+	<select id="selectMinNo" parameterType="com.mysite.vo.ReplyBoardVo" resultType="int">
+		<![CDATA[
+			select min(order_no) minNo
+			from replyboard
+			where order_no > #{orderNo} and group_no = #{groupNo} and depth = #{depth}
+		]]>
+	</select>
 	
 	<update id="update" parameterType="map">
 		<![CDATA[

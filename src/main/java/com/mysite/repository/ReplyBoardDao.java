@@ -42,8 +42,15 @@ public class ReplyBoardDao {
 		return sqlSession.selectOne("replyboard.getMaxOrderNo", map);
 	}
 	
-	public int delete(ReplyBoardVo vo) {
-		return sqlSession.delete("replyboard.delete", vo);
+	public int delete(ReplyBoardVo vo, int min) {
+		Map<String, Object> map = new HashMap<String, Object> ();
+		map.put("vo", vo);
+		map.put("min", min);
+		return sqlSession.delete("replyboard.delete", map);
+	}
+	
+	public int selectMinNo(ReplyBoardVo vo) {
+		return sqlSession.selectOne("replyboard.selectMinNo", vo);
 	}
 	
 	public int update(int no, String title, String content) {

@@ -55,7 +55,8 @@ public class ReplyBoardService {
 	}
 	
 	public int delete(ReplyBoardVo vo) {
-		return replyBoardDao.delete(vo);
+		int min = replyBoardDao.selectMinNo(vo);
+		return replyBoardDao.delete(vo, min);
 	}
 	
 	public int update(int no, String title, String content) {
