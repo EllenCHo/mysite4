@@ -11,7 +11,7 @@
 					    from replyboard, users
 					    where users.no = user_no
 					    order by replyboard.no asc))
-			order by groupNo desc, orderNo asc
+			order by groupNo desc, orderNo asc, depth asc
 		]]>
 	</select>
 	
