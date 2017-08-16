@@ -103,4 +103,10 @@
 			order by no desc
 		]]>
 	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		<![CDATA[
+			select count(*) from replyboard
+		]]>
+	</select>
 </mapper>
