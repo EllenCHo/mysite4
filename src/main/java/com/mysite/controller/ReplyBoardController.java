@@ -87,4 +87,12 @@ public class ReplyBoardController {
 		
 		return "redirect:/replyboard/read/m?no="+no;
 	}
+	
+	@RequestMapping(value="search")
+	public String search(@RequestParam("kwd") String kwd, Model model) {
+		List<ReplyBoardVo> list = replyBoardService.search(kwd);
+		
+		model.addAttribute("list", list);
+		return "/replyboard/list";
+	}
 }

@@ -77,4 +77,19 @@
 			where no = #{no}
 		]]>
 	</update>
+	
+	<select id="search" parameterType="String" resultType="com.mysite.vo.ReplyBoardVo">
+		<![CDATA[
+			select rn, no ,title, content, hit, regDate, userNo, name, groupNo, orderNo, depth
+			from (select rn, no, title, content, hit, regDate, userNo, name, groupNo, orderNo, depth
+				  from (select rownum rn, no, title, content, hit, regDate, userNo, name, groupNo, orderNo, depth
+					    from (select replyboard.no no, title, content, hit, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate, user_no userNo,
+					    	  name, group_no groupNo, order_no orderNo, depth
+						      from replyboard, users
+						      where users.no = user_no)
+					    where title like #{kwd} or content like #{kwd}
+					    order by no asc))
+			order by groupNo desc, orderNo asc
+		]]>
+	</select>
 </mapper>

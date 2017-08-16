@@ -54,5 +54,9 @@ public class ReplyBoardDao {
 	public int hit(int no) {
 		return sqlSession.update("replyboard.hit", no);
 	}
+	
+	public List<ReplyBoardVo> search(String kwd) {
+		return sqlSession.selectList("replyboard.search", kwd);
+	}
 
 }

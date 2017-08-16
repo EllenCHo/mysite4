@@ -19,11 +19,8 @@
 		<div id="content">
 			<div id="board">
 				<form id="search_form"
-					action="${pageContext.request.contextPath }/board/search"
-					method="get">
-					<input type="text" id="kwd" name="kwd" value="${voca}"> <input
-						type="hidden" name="currNo" value="1"> <input
-						type="submit" value="찾기">
+					action="${pageContext.request.contextPath }/replyboard/search" method="get">
+					<input type="text" id="kwd" name="kwd" value="${kwd}"> <input type="submit" value="찾기">
 				</form>
 				<table class="tbl-ex">
 					<tr>
@@ -39,7 +36,7 @@
 							<td>${vo.rn }</td>
 							<td style="text-align:left">
 								<c:forEach var="i" begin="1" end="${vo.depth}" step="1">
-									&nbsp;  
+									&nbsp; &nbsp;
 									<c:if test="${i == vo.depth}">
 										<img src="${pageContext.request.contextPath }/assets/images/reply.png" width ="16px" alt="답글"/>
 									</c:if>

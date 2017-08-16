@@ -59,5 +59,10 @@ public class ReplyBoardService {
 		content.replace("\r\n", "<br/>");
 		return replyBoardDao.update(no, title, content);
 	}
+	
+	public List<ReplyBoardVo> search(String kwd){
+		String voca = '%'+kwd+'%';
+		return replyBoardDao.search(voca);
+	}
 
 }
