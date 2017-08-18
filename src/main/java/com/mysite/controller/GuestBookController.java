@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +19,10 @@ public class GuestBookController {
 	@Autowired
 	GuestBookService guestBookService;
 	
+	@RequestMapping(value="/list2", method=RequestMethod.GET)
+	public String listAjax(Model model) {
+		return "/guestbook/list-ajax";
+	}
 	@RequestMapping(value ="/list")
 	public String list(Model model) {
 		List<GuestBookVo> list = guestBookService.getList();
