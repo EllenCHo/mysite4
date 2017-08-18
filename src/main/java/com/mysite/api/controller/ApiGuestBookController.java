@@ -14,7 +14,7 @@ public class ApiGuestBookController {
 	@RequestMapping(value="list", method=RequestMethod.POST)
 	public String list() {
 		System.out.println("ajax-list");
-		String str = "okay";
+		String str = "성공";
 		
 		return str;
 	}
