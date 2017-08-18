@@ -75,8 +75,8 @@
 			data : {name: "홍길동"}, */
 
 			//dataType : "json",
-			success : function(result){
-				alert(result)
+			success : function(guestBookList){
+				console.log(guestBookList)
 				/*성공시 처리해야될 코드 작성*/
 			},
 			error : function(XHR, status, error) {

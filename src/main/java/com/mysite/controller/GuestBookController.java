@@ -17,7 +17,7 @@ import com.mysite.vo.GuestBookVo;
 @RequestMapping(value ="gb")
 public class GuestBookController {
 	@Autowired
-	GuestBookService guestBookService;
+	private GuestBookService guestBookService;
 	
 	@RequestMapping(value="/list2", method=RequestMethod.GET)
 	public String listAjax(Model model) {

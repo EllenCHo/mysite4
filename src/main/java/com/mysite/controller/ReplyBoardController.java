@@ -19,7 +19,7 @@ import com.mysite.vo.ReplyBoardVo;
 @RequestMapping("/replyboard")
 public class ReplyBoardController {
 	@Autowired
-	ReplyBoardService replyBoardService;
+	private ReplyBoardService replyBoardService;
 
 	@RequestMapping("/list")
 	public String list(@RequestParam("currNo") int currNo, Model model) {

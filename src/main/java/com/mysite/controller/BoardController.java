@@ -19,7 +19,7 @@ import com.mysite.vo.PageVo;
 @RequestMapping("/board")
 public class BoardController {
 	@Autowired
-	BoardService boardService;
+	private BoardService boardService;
 	
 	@RequestMapping(value ="/list")
 	public String list(@RequestParam("currNo") int currNo, Model model) {
