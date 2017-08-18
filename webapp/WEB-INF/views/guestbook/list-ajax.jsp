@@ -5,6 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link href="${pageContext.request.contextPath }/assets/css/guestbook.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/assets/js/jquery/jquery-1.12.4.js"></script>
 	<title>ajax-My site</title>
 </head>
 <body>
@@ -63,4 +64,26 @@
 	</div> <!-- /container -->
 
 </body>
+<script type="text/javascript">
+	//jsp를 한번 정리한 후에 이 코드가 실행됨(ready)
+	$(document).ready(function(){
+		$.ajax({
+			
+			url : "${pageContext.request.contextPath }/api/gb/list",		
+			type : "post",
+			/* contentType : "application/json",
+			data : {name: "홍길동"}, */
+
+			//dataType : "json",
+			success : function(result){
+				alert(result)
+				/*성공시 처리해야될 코드 작성*/
+			},
+			error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			}
+		});
+
+	});
+</script>
 </html>
