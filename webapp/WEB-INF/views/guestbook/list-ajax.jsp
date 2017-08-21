@@ -139,5 +139,12 @@
 			console.log("error");
 		}
 	}
+	
+	//스크롤이 화면 제일 아래에 왔을때
+	$(window).scroll(function() {
+	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+	    	console.log("정보갱신")
+	    }
+	});
 </script>
 </html>
