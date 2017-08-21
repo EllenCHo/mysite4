@@ -43,7 +43,7 @@
 							<label>서비스 약관에 동의합니다.</label>
 						</fieldset>
 						
-						<input type="submit" value="가입하기">
+						<input id="submit" type="submit" value="가입하기">
 						
 					</form>
 					
@@ -54,7 +54,7 @@
 		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 		
 		<script type="text/javascript">
-			var button = $("#button").on("click", function(){
+			$("#button").on("click", function(){
 				var email = $("#email").val();
 				
 				if(email == ""){
@@ -83,6 +83,47 @@
 					});
 				}
 			});
+			
+			/* $("#join-form").on("submit", function(){
+				event.preventDefault();						//원래의 submit기능을 실행하기 때문에 그 기능을 막고 여기로 오게 하는 것
+				
+				var name = $("#name").val();
+				var email = $("#email").val();
+				var check = $("#check").text();
+				var password = $("[name = password]").val();
+				
+				console.log(check);
+				if(name != "" && email != "" && password != "" && check == "사용할 수 있는 이메일입니다.") {
+					console.log("가입")
+					var userVo = {
+							name : name,
+							password : password,
+							email : email,
+							gender : $("[name=gender]").val()
+					}
+					
+					$.ajax({
+
+						url : "${pageContext.request.contextPath }/user/join", //연결할 컨트롤러
+						type : "post", //전송할 방식
+						//contentType : "application/json",			//데이터가 많을때는 알맹이만 보내는것이 나으므로 json으로 보냄
+						//앞은 보낼 파라미터 이름, 그 뒤는 파라미터
+						data : userVo,			
+						
+						//dataType : "json", //컨트롤러에서 데이터로 받을때 (json 형태로 날라옴 다른 형태도 가능함)
+						success : function() { //list에 값이 하나도 없어도 success로 온다
+							console.log("가입성공");
+						},
+						error : function(XHR, status, error) { //실패했을때 에러메세지 찍어달라는것, 통신상의 에러라던지 그런것들
+							console.error(status + " : " + error);
+						}
+					});
+				} else {
+					alert("모든 항목을 채워넣거나 이메일 중복을 확인해주세요.");
+				}
+				
+				
+			}); */
 			
 			
 		</script>
