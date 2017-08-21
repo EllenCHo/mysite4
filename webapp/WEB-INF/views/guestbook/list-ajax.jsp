@@ -65,18 +65,20 @@
 			event.preventDefault();						//원래의 submit기능을 실행하기 때문에 그 기능을 막고 여기로 오게 하는 것
 			console.log("전송버튼 클릭");
 			
-			var name= $("[name=name]").val();
-			var password = $("[name=password]").val();
-			var content = $("[name=content]").val();
+			var guestBookVo = {
+					name : $("[name=name]").val(),
+					password : $("[name=password]").val(),
+					content : $("[name=content]").val()
+			}
 
 			$.ajax({
 
 				url : "${pageContext.request.contextPath }/api/gb/add", //연결할 컨트롤러
 				type : "post", //전송할 방식
-				/* contentType : "application/json",	*/		
+				contentType : "application/json",			//데이터가 많을때는 알맹이만 보내는것이 나으므로 json으로 보냄
 				//앞은 보낼 파라미터 이름, 그 뒤는 파라미터
-				data : {name: name, password : password, content : content},
-
+				data : JSON.stringify(guestBookVo),			
+				
 				dataType : "json", //컨트롤러에서 데이터로 받을때 (json 형태로 날라옴 다른 형태도 가능함)
 				success : function(guestBookVo) { //list에 값이 하나도 없어도 success로 온다
 					console.log(guestBookVo);
