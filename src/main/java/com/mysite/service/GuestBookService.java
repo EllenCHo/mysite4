@@ -35,4 +35,19 @@ public class GuestBookService {
 	public int delete(int no, String password) {
 		return guestBookDao.delete(no, password);
 	}
+	
+	public GuestBookVo write(GuestBookVo guestBookVo) {
+		String content = guestBookVo.getContent().replace("\r\n", "<br/>");
+		guestBookVo.setContent(content);
+		
+		Calendar cal = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String date = sdf.format(cal.getTime());
+		
+		guestBookVo.setRegDate(date);
+		
+		int no = guestBookDao.insert(guestBookVo);
+		
+		return guestBookDao.selectByNo(no);
+	}
 }
