@@ -70,7 +70,7 @@
 						if(email == ""){
 							$("#check").text("사용할 수 있는 이메일입니다.");
 						} else {
-							$("#check").text("사용중인 이메일입니다.").css("color", "red");
+							$("#check").html("<font color='red'><strong>사용중인 이메일입니다.</strong></font>");
 						}
 						/*성공시 처리해야될 코드 작성*/
 					},
