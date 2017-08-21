@@ -35,4 +35,8 @@ public class UserDao {
 	public int updateUser(UserVo userVo) {
 		return sqlSession.update("user.update", userVo);
 	}
+	
+	public String checkEmail(String email) {
+		return sqlSession.selectOne("user.checkEmail", email);
+	}
 }

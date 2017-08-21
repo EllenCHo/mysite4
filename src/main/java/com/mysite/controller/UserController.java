@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mysite.service.UserService;
 import com.mysite.vo.UserVo;
@@ -77,5 +78,11 @@ public class UserController {
 		authUser.setName(userVo.getName());
 		
 		return "redirect:/main";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/check", method=RequestMethod.POST)
+	public String check(@RequestParam("email") String email) {
+		return userService.checkEmail(email);
 	}
 }

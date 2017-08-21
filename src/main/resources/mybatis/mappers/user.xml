@@ -45,4 +45,12 @@
 			where no = #{no}
 		]]>
 	</update>
+	
+	<select id="checkEmail" parameterType="String" resultType="String">
+		<![CDATA[
+			select email
+			from users
+			where email = #{email}
+		]]>
+	</select>
 </mapper>
