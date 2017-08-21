@@ -55,7 +55,6 @@
 		
 		<script type="text/javascript">
 			var button = $("#button").on("click", function(){
-				console.log("중복확인 버튼 클릭");
 				var email = $("#email").val();
 				
 				$.ajax({
@@ -68,7 +67,6 @@
 					
 					//dataType : "json", //컨트롤러에서 데이터로 받을때 (json 형태로 날라옴 다른 형태도 가능함)
 					success : function(email) { //list에 값이 하나도 없어도 success로 온다
-						console.log(email);
 						if(email == ""){
 							$("#check").text("사용할 수 있는 이메일입니다.");
 						} else {
