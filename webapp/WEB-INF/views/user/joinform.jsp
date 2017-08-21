@@ -26,6 +26,7 @@
 						<label class="block-label" for="email">이메일</label>
 						<input id="email" name="email" type="text" value="" />
 						<input id="button" type="button" value="id 중복체크">
+						<label id="check"></label>
 						
 						<label class="block-label">패스워드</label>
 						<input name="password" type="password" value="" />
@@ -69,9 +70,9 @@
 					success : function(email) { //list에 값이 하나도 없어도 success로 온다
 						console.log(email);
 						if(email == ""){
-							alert("사용할 수 있는 이메일입니다.")
+							$("#check").text("사용할 수 있는 이메일입니다.")
 						} else {
-							alert("중복되는 이메일입니다.")
+							$("#check").text("사용중인 이메일입니다.")
 							$("#email").val("");
 						}
 						/*성공시 처리해야될 코드 작성*/
