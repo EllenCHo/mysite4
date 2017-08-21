@@ -57,27 +57,31 @@
 			var button = $("#button").on("click", function(){
 				var email = $("#email").val();
 				
-				$.ajax({
-
-					url : "${pageContext.request.contextPath }/user/check", //연결할 컨트롤러
-					type : "post", //전송할 방식
-					//contentType : "application/json",			//데이터가 많을때는 알맹이만 보내는것이 나으므로 json으로 보냄
-					//앞은 보낼 파라미터 이름, 그 뒤는 파라미터
-					data : {email : email},			
-					
-					//dataType : "json", //컨트롤러에서 데이터로 받을때 (json 형태로 날라옴 다른 형태도 가능함)
-					success : function(email) { //list에 값이 하나도 없어도 success로 온다
-						if(email == ""){
-							$("#check").text("사용할 수 있는 이메일입니다.");
-						} else {
-							$("#check").html("<font color='red'><strong>사용중인 이메일입니다.</strong></font>");
+				if(email == ""){
+					$("#check").html("<font color='blue'><strong>이메일을 작성해주세요.</strong></font>");
+				} else {
+					$.ajax({
+	
+						url : "${pageContext.request.contextPath }/user/check", //연결할 컨트롤러
+						type : "post", //전송할 방식
+						//contentType : "application/json",			//데이터가 많을때는 알맹이만 보내는것이 나으므로 json으로 보냄
+						//앞은 보낼 파라미터 이름, 그 뒤는 파라미터
+						data : {email : email},			
+						
+						//dataType : "json", //컨트롤러에서 데이터로 받을때 (json 형태로 날라옴 다른 형태도 가능함)
+						success : function(email) { //list에 값이 하나도 없어도 success로 온다
+							if(email == ""){
+								$("#check").text("사용할 수 있는 이메일입니다.");
+							} else {
+								$("#check").html("<font color='red'><strong>사용중인 이메일입니다.</strong></font>");
+							}
+							/*성공시 처리해야될 코드 작성*/
+						},
+						error : function(XHR, status, error) { //실패했을때 에러메세지 찍어달라는것, 통신상의 에러라던지 그런것들
+							console.error(status + " : " + error);
 						}
-						/*성공시 처리해야될 코드 작성*/
-					},
-					error : function(XHR, status, error) { //실패했을때 에러메세지 찍어달라는것, 통신상의 에러라던지 그런것들
-						console.error(status + " : " + error);
-					}
-				});
+					});
+				}
 			});
 			
 			
