@@ -27,10 +27,10 @@ public class ApiGuestBookController {
 		return list;
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping(value="add", method=RequestMethod.POST)
-	public void add(@ModelAttribute GuestBookVo guestBookVo) {
-		System.out.println(guestBookVo.toString());
-		guestBookService.insert(guestBookVo);
+	public GuestBookVo add(@ModelAttribute GuestBookVo guestBookVo) {
+		guestBookVo = guestBookService.writeVo(guestBookVo);
+		return guestBookVo;
 	}
 }

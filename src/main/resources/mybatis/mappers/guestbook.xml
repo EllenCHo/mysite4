@@ -17,10 +17,28 @@
 		]]>
 	</insert>
 	
+	<insert id="insertVo" parameterType="com.mysite.vo.GuestBookVo">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select seq_guestbook_no.nextval from dual 
+		</selectKey>
+		<![CDATA[
+			insert into guestbook
+			values(#{no}, #{name}, #{password}, #{content}, TO_DATE(#{regDate},'YYYY-MM-DD hh24:mi:ss'))			
+		]]>
+	</insert>
+	
 	<delete id="delete" parameterType="map">
 		<![CDATA[
 			delete from guestbook
 			where no = #{no} and password = #{password}
 		]]>
 	</delete>
+	
+	<select id="selectByNo" parameterType="int" resultType="com.mysite.vo.GuestBookVo">
+		<![CDATA[
+			select no, name, password, content, to_char(reg_date,'yyyy-mm-dd hh24:mi:ss') regDate
+			from guestbook
+			where no = #{no}
+		]]>
+	</select>
 </mapper>

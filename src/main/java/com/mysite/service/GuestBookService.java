@@ -36,7 +36,7 @@ public class GuestBookService {
 		return guestBookDao.delete(no, password);
 	}
 	
-	public GuestBookVo write(GuestBookVo guestBookVo) {
+	public GuestBookVo writeVo(GuestBookVo guestBookVo) {
 		String content = guestBookVo.getContent().replace("\r\n", "<br/>");
 		guestBookVo.setContent(content);
 		
@@ -46,7 +46,7 @@ public class GuestBookService {
 		
 		guestBookVo.setRegDate(date);
 		
-		int no = guestBookDao.insert(guestBookVo);
+		int no = guestBookDao.insertVo(guestBookVo);
 		
 		return guestBookDao.selectByNo(no);
 	}

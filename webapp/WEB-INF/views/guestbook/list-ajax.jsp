@@ -77,9 +77,10 @@
 				//앞은 보낼 파라미터 이름, 그 뒤는 파라미터
 				data : {name: name, password : password, content : content},
 
-				//dataType : "json", //컨트롤러에서 데이터로 받을때 (json 형태로 날라옴 다른 형태도 가능함)
-				success : function() { //list에 값이 하나도 없어도 success로 온다
-					console.log("add 성공");
+				dataType : "json", //컨트롤러에서 데이터로 받을때 (json 형태로 날라옴 다른 형태도 가능함)
+				success : function(guestBookVo) { //list에 값이 하나도 없어도 success로 온다
+					console.log(guestBookVo);
+					render(guestBookVo, "up");
 					/*성공시 처리해야될 코드 작성*/
 				},
 				error : function(XHR, status, error) { //실패했을때 에러메세지 찍어달라는것, 통신상의 에러라던지 그런것들
@@ -100,7 +101,7 @@
 			dataType : "json", //컨트롤러에서 데이터로 받을때 (json 형태로 날라옴 다른 형태도 가능함)
 			success : function(guestBookList) { //list에 값이 하나도 없어도 success로 온다
 				for (var i = 0; i < guestBookList.length; i++) {
-					render(guestBookList[i]);
+					render(guestBookList[i], "down");
 				}
 				console.log(guestBookList)
 				/*성공시 처리해야될 코드 작성*/
@@ -111,7 +112,7 @@
 		});
 	}
 	
-	function render(guestbookVo) {
+	function render(guestbookVo, updown) {
 		var str = "";
 		str += "<li>";
 		str += "	<table>";
@@ -127,8 +128,14 @@
 		str += "	</table>";
 		str += "	<br/>";
 		str += "</li>";
-
-		$("#guestbook-list").append(str);
+		
+		if(updown == "down") {
+			$("#guestbook-list").append(str);
+		} else if(updown == "up") {
+			$("#guestbook-list").prepend(str);
+		} else {
+			console.log("error");
+		}
 	}
 </script>
 </html>
