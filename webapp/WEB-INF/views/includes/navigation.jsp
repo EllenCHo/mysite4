@@ -7,5 +7,6 @@
 				<li><a href="${pageContext.request.contextPath }/gb/list2">ajax 방명록</a></li>
 				<li><a href="${pageContext.request.contextPath }/board/list?currNo=1">게시판</a></li>
 				<li><a href="${pageContext.request.contextPath }/replyboard/list?currNo=1">계층형 게시판</a></li>
+				<li><a href="${pageContext.request.contextPath }/fileUpload/form">파일 업로드</a></li>
 			</ul>
 		</div> <!-- /navigation -->
