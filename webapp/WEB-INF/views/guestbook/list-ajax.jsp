@@ -22,7 +22,7 @@
 		<div id="wrapper">
 			<div id="content">
 				<div id="guestbook">
-					<form id="write-form" action="" method="">
+					<form id="write-form" action="">
 						<table>
 							<tr>
 								<td>이름</td>
